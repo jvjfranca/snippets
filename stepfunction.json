@@ -1,0 +1,18 @@
+{
+    "StartAt": "InvokeLambda",
+    "States": {
+      "InvokeLambda": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+        "Parameters": {
+          "FunctionName": "your-lambda-function-name",
+          "Payload": {
+            "input.$": "$",
+            "taskToken.$": "$$.Task.Token"
+          }
+        },
+        "End": true
+      }
+    }
+  }
+  
